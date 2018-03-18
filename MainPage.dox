@@ -1,0 +1,63 @@
+/**
+@mainpage Dokumentacja zadania wielomiany
+
+### Treść zadania
+
+Aktualna treść zadania znajduje się w [Moodle'u](https://moodle.mimuw.edu.pl).
+
+### Opis projektu
+Kalkulator działający na wielomianach i stosujący odwrotną notację polską.
+Program kalkulatora czyta dane wierszami ze standardowego wejścia. Wiersz zawiera wielomian lub polecenie do wykonania.
+
+Wielomian reprezentowany jest na wejściu jako stała, jednomian lub suma jednomianów. Stała jest liczbą całkowitą. Jednomian reprezentowany jest jako (coeff,exp), gdzie współczynnik coeff jest wielomianem, a wykładnik exp jest liczbą nieujemną. Do wyrażenia sumy używany jest znak +. Jeśli wiersz zawiera wielomian, to program wstawia go na stos. Przykłady poprawnych wielomianów:
+
+0\n
+1\n
+-2\n
+(0,0)\n
+(1,0)\n
+(-2,0)\n
+(1,1)\n
+(1,0)+(1,2)\n
+(1,2)+(1,0)\n
+(1,2)+(-1,2)\n
+(1,2)+(-2,2)\n
+((1,2),15)+(-7,8)\n
+(3,1)+(((4,4),100),2)\n
+
+Kalkulator wykonuje następujące polecenia:
+    ZERO – wstawia na wierzchołek stosu wielomian tożsamościowo równy zeru;\n
+    IS_COEFF – sprawdza, czy wielomian na wierzchołku stosu jest współczynnikiem – wypisuje na standardowe wyjście 0 lub 1;\n
+    IS_ZERO – sprawdza, czy wielomian na wierzchołku stosu jest tożsamościowo równy zeru – wypisuje na standardowe wyjście 0 lub 1;\n
+    CLONE – wstawia na stos kopię wielomianu z wierzchołka;\n
+    ADD – dodaje dwa wielomiany z wierzchu stosu, usuwa je i wstawia na wierzchołek stosu ich sumę;\n
+    MUL – mnoży dwa wielomiany z wierzchu stosu, usuwa je i wstawia na wierzchołek stosu ich iloczyn;\n
+    NEG – neguje wielomian na wierzchołku stosu;\n
+    SUB – odejmuje od wielomianu z wierzchołka wielomian pod wierzchołkiem, usuwa je i wstawia na wierzchołek stosu różnicę;\n
+    IS_EQ – sprawdza, czy dwa wielomiany na wierzchu stosu są równe – wypisuje na standardowe wyjście 0 lub 1;\n
+    DEG – wypisuje na standardowe wyjście stopień wielomianu (−1 dla wielomianu tożsamościowo równego zeru);\n
+    DEG_BY idx – wypisuje na standardowe wyjście stopień wielomianu ze względu na zmienną o numerze idx (−1 dla wielomianu tożsamościowo równego zeru);\n
+    AT x – wylicza wartość wielomianu w punkcie x, usuwa wielomian z wierzchołka i wstawia na stos wynik operacji;\n
+    PRINT – wypisuje na standardowe wyjście wielomian z wierzchołka stosu w formacie akceptowanym przez parser;\n
+    POP – usuwa wielomian z wierzchołka stosu.\n
+    
+    
+No przepraszam, że nie ma wszędzie polskich znaków (prawy alt mi wypadł ofc).
+*/
+
+/**
+@file chain_poly.sh
+Skrypt
+
+Skrypt przyjmuje dwa parametry: nazwę programu i nazwę katalogu z danymi. Skrypt wypisuje informację o błędzie i zwraca 1, jeśli podane parametry są nieprawidłowe:
+
+    zła liczba parametrów,
+    podana nazwa programu nie wskazuje na plik wykonywalny,
+    podana nazwa katalogu nie wskazuje na katalog.
+
+Skrypt przetwarza iteracyjnie pliki znalezione w podanym katalogu w następujący sposób. Pierwszym plikiem jest plik zaczynający się linią z napisem START. Na końcu pliku jest linia z napisem FILE name lub STOP. Napis FILE name oznacza, że w kolejnej iteracji należy przetworzyć plik o nazwie name. Napis STOP oznacza, że należy zakończyć przetwarzanie. Na wejście programu kalkulatora podawane jest połączone wyjście programu z poprzedniej iteracji i zawartość następnego pliku. Dla pierwszego pliku poprzednie wyjście jest puste. W danych podawanych na wejście programu pomijane są linie z napisami START, FILE i STOP. Pozostałe linie są poleceniami dla programu kalkulatora. Po przetworzeniu ostatniego pliku skrypt wypisuje na standardowe wyjście wynik ostatniego uruchomienia kalkulatora i zwraca 0. Zakładamy, że w podanym katalogu
+
+    istnieje przynajmniej jeden plik,
+    pliki mają format zgodny ze specyfikacją,
+    w plikach dane dla kalkulatora są poprawne – skrypt nie musi obsługiwać błędów wypisywanych przez kalkulator.
+*/
